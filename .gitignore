@@ -7,3 +7,7 @@ solr_exporter
 *~
 prometheus-solr-exporter
 solr_exporter
+@*
+vendor/github.com/_TRASH_/
+do_run.sh
+solr
