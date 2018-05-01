@@ -36,15 +36,6 @@ var (
 	solrPidFile      = kingpin.Flag("solr.pid-file", "").Default(pidFileHelpText).String()
 )
 
-var landingPage = []byte(`<html>
-<head><title>Solr exporter</title></head>
-<body>
-<h1>Solr exporter</h1>
-<p><a href='` + *metricsPath + `'>Metrics</a></p>
-</body>
-</html>
-`)
-
 func main() {
 	log.AddFlags(kingpin.CommandLine)
 	kingpin.Version(version.Print("solr_exporter"))
@@ -73,6 +64,15 @@ func main() {
 			}, "solr")
 		prometheus.MustRegister(procExporter)
 	}
+
+var landingPage = []byte(`<html>
+<head><title>Solr exporter</title></head>
+<body>
+<h1>Solr exporter</h1>
+<p><a href='` + *metricsPath + `'>Metrics</a></p>
+</body>
+</html>
+`)
 
 	log.Infoln("Listening on", *listenAddress)
 	http.Handle(*metricsPath, prometheus.Handler())
